@@ -80,7 +80,7 @@ export default function Sidebar({
             <div
               className={`flex flex-col justify-end truncate ${isCollapsed ? 'invisible w-0' : 'visible w-auto'}`}
             >
-              <span className='font-medium'>Replay Anaysis</span>
+              <span className='font-medium'>Replay Analysis</span>
               <span className='text-xs'>by trophi.ai</span>
             </div>
           </div>

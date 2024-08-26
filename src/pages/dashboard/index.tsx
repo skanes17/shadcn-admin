@@ -13,7 +13,11 @@ import ThemeSwitch from '@/components/theme-switch'
 import { TopNav } from '@/components/top-nav'
 import { UserNav } from '@/components/user-nav'
 import { RecentSales } from './components/recent-sales'
-import { Overview } from './components/overview'
+import { BarGraph } from '@/components/charts/bar-graph'
+import { PieGraph } from '@/components/charts/pie-graph'
+import { AreaGraph } from '@/components/charts/area-graph'
+
+import ChatComponent from './components/chatbox'
 
 export default function Dashboard() {
   return (
@@ -21,7 +25,7 @@ export default function Dashboard() {
       {/* ===== Top Heading ===== */}
       <Layout.Header>
         <TopNav links={topNav} />
-        <div className='ml-auto flex items-center space-x-4'>
+        <div className='ml-auto flex items-center justify-end space-x-4'>
           <Search />
           <ThemeSwitch />
           <UserNav />
@@ -31,7 +35,7 @@ export default function Dashboard() {
       {/* ===== Main ===== */}
       <Layout.Body>
         <div className='mb-2 flex items-center justify-between space-y-2'>
-          <h1 className='text-2xl font-bold tracking-tight'>Dashboard</h1>
+          <h1 className='text-2xl font-bold tracking-tight'>Welcome back 👋</h1>
           <div className='flex items-center space-x-2'>
             <Button>Download</Button>
           </div>
@@ -153,26 +157,28 @@ export default function Dashboard() {
                 </CardContent>
               </Card>
             </div>
-            <div className='grid grid-cols-1 gap-4 lg:grid-cols-7'>
-              <Card className='col-span-1 lg:col-span-4'>
-                <CardHeader>
-                  <CardTitle>Overview</CardTitle>
-                </CardHeader>
-                <CardContent className='pl-2'>
-                  <Overview />
-                </CardContent>
-              </Card>
+            <div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-7'>
+              <div className='col-span-1 lg:col-span-4'>
+                <BarGraph />
+              </div>
               <Card className='col-span-1 lg:col-span-3'>
                 <CardHeader>
-                  <CardTitle>Recent Sales</CardTitle>
+                  <CardTitle>Chat with Mansell</CardTitle>
                   <CardDescription>
-                    You made 265 sales this month.
+                    Ask questions to understand your playstyle.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <RecentSales />
+                  {/* <RecentSales /> */}
+                  <ChatComponent />
                 </CardContent>
               </Card>
+              <div className='col-span-1 lg:col-span-4'>
+                <AreaGraph />
+              </div>
+              <div className='col-span-1 lg:col-span-3'>
+                <PieGraph />
+              </div>
             </div>
           </TabsContent>
         </Tabs>
