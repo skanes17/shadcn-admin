@@ -1,7 +1,14 @@
 'use client'
 
 import { TrendingUp } from 'lucide-react'
-import { Area, AreaChart, CartesianGrid, Line, XAxis } from 'recharts'
+import {
+  Area,
+  AreaChart,
+  CartesianGrid,
+  Line,
+  LineChart,
+  XAxis,
+} from 'recharts'
 
 import {
   Card,
@@ -82,15 +89,12 @@ export function LineGraph() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Average Speed</CardTitle>
-        <CardDescription>Average speed over the last 50 games</CardDescription>
+        <CardTitle>Line Chart</CardTitle>
+        <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer
-          config={chartConfig}
-          className='aspect-auto h-[310px] w-full'
-        >
-          <AreaChart
+        <ChartContainer config={chartConfig}>
+          <LineChart
             accessibilityLayer
             data={chartData}
             margin={{
@@ -99,26 +103,28 @@ export function LineGraph() {
             }}
           >
             <CartesianGrid vertical={false} />
-            <XAxis dataKey='game' tickLine={false} axisLine={false} />
+            <XAxis dataKey='game' />
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent indicator='dot' />}
+              content={<ChartTooltipContent hideLabel />}
             />
-            <Line dataKey='avg_speed' stroke={chartConfig.avg_speed.color} />
-          </AreaChart>
+            <Line
+              dataKey='avg_speed'
+              type='natural'
+              stroke='var(--color-avg_speed)'
+              strokeWidth={2}
+              dot={false}
+            />
+          </LineChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter>
-        {/* <div className='flex w-full items-start gap-2 text-sm'>
-          <div className='grid gap-2'>
-            <div className='flex items-center gap-2 font-medium leading-none'>
-              Trending up by 5.2% this month <TrendingUp className='h-4 w-4' />
-            </div>
-            <div className='flex items-center gap-2 leading-none text-muted-foreground'>
-              January - June 2024
-            </div>
-          </div>
-        </div> */}
+      <CardFooter className='flex-col items-start gap-2 text-sm'>
+        <div className='flex gap-2 font-medium leading-none'>
+          Trending up by 5.2% this month <TrendingUp className='h-4 w-4' />
+        </div>
+        <div className='leading-none text-muted-foreground'>
+          Showing total visitors for the last 6 months
+        </div>
       </CardFooter>
     </Card>
   )
