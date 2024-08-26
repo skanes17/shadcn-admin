@@ -18,6 +18,7 @@ import { PieGraph } from '@/components/charts/pie-graph'
 import { AreaGraph } from '@/components/charts/area-graph'
 
 import ChatComponent from './components/chatbox'
+import { LineGraph } from '@/components/charts/line-graph'
 
 export default function Dashboard() {
   return (
@@ -178,6 +179,9 @@ export default function Dashboard() {
               </div>
               <div className='col-span-1 lg:col-span-3'>
                 <PieGraph />
+              </div>
+              <div className='col-span-1 lg:col-span-4'>
+                <LineGraph />
               </div>
             </div>
           </TabsContent>
