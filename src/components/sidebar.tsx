@@ -80,8 +80,8 @@ export default function Sidebar({
             <div
               className={`flex flex-col justify-end truncate ${isCollapsed ? 'invisible w-0' : 'visible w-auto'}`}
             >
-              <span className='font-medium'>Shadcn Admin</span>
-              <span className='text-xs'>Vite + ShadcnUI</span>
+              <span className='font-medium'>Replay Anaysis</span>
+              <span className='text-xs'>by trophi.ai</span>
             </div>
           </div>
 
@@ -117,7 +117,7 @@ export default function Sidebar({
         >
           <IconChevronsLeft
             stroke={1.5}
-            className={`h-5 w-5 ${isCollapsed ? 'rotate-180' : ''}`}
+            className={`h-50 w-50 ${isCollapsed ? 'rotate-180' : ''}`}
           />
         </Button>
       </Layout>
