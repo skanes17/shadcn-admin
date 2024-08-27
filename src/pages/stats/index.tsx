@@ -45,18 +45,20 @@ export default function Stats() {
         </div>
         <Tabs
           orientation='vertical'
-          defaultValue='overview'
+          defaultValue='last_game'
           className='space-y-4'
         >
           <div className='w-full overflow-x-auto pb-2'>
             <TabsList>
-              <TabsTrigger value='overview'>Overview</TabsTrigger>
-              <TabsTrigger value='analytics'>Analytics</TabsTrigger>
-              <TabsTrigger value='reports'>Reports</TabsTrigger>
-              <TabsTrigger value='notifications'>Notifications</TabsTrigger>
+              <TabsTrigger value='last_game'>Last Game</TabsTrigger>
+              <TabsTrigger value='last_5'>Last 5</TabsTrigger>
+              <TabsTrigger value='last_10'>Last 10</TabsTrigger>
+              <TabsTrigger value='last_25'>Last 25</TabsTrigger>
+              <TabsTrigger value='last_50'>Last 50</TabsTrigger>
             </TabsList>
           </div>
-          <TabsContent value='overview' className='space-y-4'>
+          {/* // ! put the content of each tab here, matching the value */}
+          <TabsContent value='last_game' className='space-y-4'>
             <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-4'>
               <Card>
                 <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>

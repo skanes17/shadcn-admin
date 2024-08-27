@@ -43,6 +43,8 @@ export default function Overview() {
   const gamesPlayed = chartData.length // Number of games played
   const { selectedGames, setSelectedGames } = useGamesFilterStore() // ! use zustand to carry context
 
+  // const [selectedTab, setSelectedTab] = useState('last_game')
+
   // const filteredData = chartData.slice(-selectedGames)
 
   const availableFilters = filterStages.filter((stage) => gamesPlayed >= stage)
@@ -85,10 +87,10 @@ export default function Overview() {
       <Layout.Body>
         <div className='grid grid-cols-1 gap-4 md:grid-cols-3 '>
           <Card className='mb-2 flex flex-col justify-start p-2'>
-            <CardHeader className='text-2xl font-semibold'>
+            <CardHeader className='text-3xl font-semibold'>
               Match Grade
             </CardHeader>
-            <CardContent className='text-5xl text-red-600'>
+            <CardContent className='new-amsterdam-regular text-5xl text-red-600'>
               TOUGH LOSS
             </CardContent>
             <CardFooter>
@@ -96,19 +98,19 @@ export default function Overview() {
             </CardFooter>
           </Card>
           <Card className='mb-2 flex flex-col justify-start p-2'>
-            <CardHeader className='text-2xl font-semibold'>
+            <CardHeader className='text-3xl font-semibold'>
               Biggest Win
             </CardHeader>
-            <CardContent className='text-5xl text-green-600'>
+            <CardContent className='new-amsterdam-regular text-5xl text-green-600'>
               Aerials 18%
             </CardContent>
             <CardFooter className='text-blue-300'>Rank Average: 13%</CardFooter>
           </Card>
           <Card className='mb-2 flex flex-col justify-start p-2'>
-            <CardHeader className='text-2xl font-semibold'>
+            <CardHeader className='text-3xl font-semibold'>
               Area of Improvement
             </CardHeader>
-            <CardContent className='text-5xl text-green-600'>
+            <CardContent className='new-amsterdam-regular text-5xl text-green-600'>
               Positioning 10%
             </CardContent>
             <CardFooter className='text-blue-300'>Rank Average: 21%</CardFooter>
@@ -116,7 +118,7 @@ export default function Overview() {
         </div>
         <div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-7'>
           <Card className='col-span-1 lg:col-span-4'>
-            <CardHeader className='text-2xl font-semibold'>
+            <CardHeader className='text-3xl font-semibold'>
               Coach's Analysis
             </CardHeader>
             <CardContent className='space-y-4'>
@@ -163,7 +165,7 @@ export default function Overview() {
             <PieGraph />
           </div>
           <div className='col-span-1 lg:col-span-4'>
-            <LineGraph />
+            <LineGraph selectedGames={selectedGames} />
           </div>
           <div className='col-span-1 lg:col-span-3'>
             <RadialGraphComponent />

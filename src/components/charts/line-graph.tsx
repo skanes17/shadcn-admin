@@ -31,8 +31,12 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
-export function LineGraph() {
-  const { selectedGames } = useGamesFilterStore() // from zustand
+interface LineGraphProps {
+  selectedGames: number;
+}
+
+export function LineGraph({ selectedGames }: LineGraphProps) {
+  // const { selectedGames } = useGamesFilterStore() // from zustand
   const filteredData = chartData.slice(-selectedGames)
 
   const gamesPlayed = filteredData.length // Number of games played
