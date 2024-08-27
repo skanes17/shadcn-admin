@@ -1,21 +1,11 @@
 'use client'
 
-import { TrendingUp } from 'lucide-react'
-import {
-  Area,
-  AreaChart,
-  CartesianGrid,
-  Line,
-  LineChart,
-  XAxis,
-  YAxis,
-} from 'recharts'
+import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts'
 
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
@@ -25,14 +15,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from '@/components/ui/chart'
-import { useState } from 'react'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '../ui/select'
+import { useGamesFilterStore } from '@/pages/overview/gamesFilterState'
 
 export const chartData = Array.from({ length: 12 }, (_, i) => ({
   game: `Game ${i + 1}`,
@@ -49,55 +32,43 @@ const chartConfig = {
 } satisfies ChartConfig
 
 export function LineGraph() {
-  const gamesPlayed = chartData.length // Number of games played
-
-  const [selectedGames, setSelectedGames] = useState(gamesPlayed)
+  const { selectedGames } = useGamesFilterStore() // from zustand
   const filteredData = chartData.slice(-selectedGames)
 
-  const availableFilters = filterStages.filter((stage) => gamesPlayed >= stage)
-  const nextUnlockStage = filterStages.find((stage) => gamesPlayed < stage)
+  const gamesPlayed = filteredData.length // Number of games played
 
-  const initialSpeed = filteredData[0].avg_speed
-  const finalSpeed = filteredData[selectedGames - 1].avg_speed
-  const speedDifference = finalSpeed - initialSpeed
+  const roundDownToNearest = (value: number, nearest: number) =>
+    Math.floor(value / nearest) * nearest
+  const roundUpToNearest = (value: number, nearest: number) =>
+    Math.ceil(value / nearest) * nearest
 
-  const avgSpeed =
-    filteredData.reduce((acc, curr) => acc + curr.avg_speed, 0) / selectedGames
+  const minValue = roundDownToNearest(
+    Math.min(...filteredData.map((d) => d.avg_speed)),
+    50
+  )
+  const maxValue = roundUpToNearest(
+    Math.max(...filteredData.map((d) => d.avg_speed)),
+    50
+  )
+
+  // const availableFilters = filterStages.filter((stage) => gamesPlayed >= stage)
+  // const nextUnlockStage = filterStages.find((stage) => gamesPlayed < stage)
+
+  // const initialSpeed = filteredData[0].avg_speed
+  // const finalSpeed = filteredData[selectedGames - 1].avg_speed
+  // const speedDifference = finalSpeed - initialSpeed
+
+  // const avgSpeed =
+  //   filteredData.reduce((acc, curr) => acc + curr.avg_speed, 0) / selectedGames
 
   return (
     <Card>
       <CardHeader>
-        <div className='flex items-center justify-between'>
-          <div>
-            <CardTitle>Average Speed</CardTitle>
-            {/* <CardDescription>Last {selectedGames} Games</CardDescription> */}
-          </div>
-          <div>
-            <Select onValueChange={(value) => setSelectedGames(Number(value))}>
-              <SelectTrigger className='w-[300px]'>
-                <SelectValue placeholder='All Games' />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value={gamesPlayed.toString()}>
-                  All Games
-                </SelectItem>
-                {availableFilters.map((filter) => (
-                  <SelectItem key={filter} value={filter.toString()}>
-                    Last {filter} Games
-                  </SelectItem>
-                ))}
-
-                {/* {nextUnlockStage && (
-                  <SelectItem disabled value='disabled'>
-                    Play {nextUnlockStage - gamesPlayed} more game
-                    {nextUnlockStage - gamesPlayed === 1 ? '' : 'es'} to
-                    unlock deeper insights!
-                  </SelectItem>
-                )} */}
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
+        <CardTitle>Average Speed</CardTitle>
+        <CardDescription>
+          Average speed for your{' '}
+          {gamesPlayed === 1 ? 'last game' : `last ${gamesPlayed} games`}{' '}
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer
@@ -114,7 +85,8 @@ export function LineGraph() {
           >
             <CartesianGrid vertical={false} />
             <XAxis dataKey='game' />
-            <YAxis dataKey='avg_speed' />
+            <YAxis domain={[minValue, maxValue]} />{' '}
+            {/* Set the domain to min and max */}
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
