@@ -8,6 +8,7 @@ import {
   Line,
   LineChart,
   XAxis,
+  YAxis,
 } from 'recharts'
 
 import {
@@ -24,79 +25,88 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from '@/components/ui/chart'
+import { useState } from 'react'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../ui/select'
 
-export const chartData = [
-  { game: 'Game 1', avg_speed: 1008 },
-  { game: 'Game 2', avg_speed: 1031 },
-  { game: 'Game 3', avg_speed: 1018 },
-  { game: 'Game 4', avg_speed: 1014 },
-  { game: 'Game 5', avg_speed: 1052 },
-  { game: 'Game 6', avg_speed: 1027 },
-  { game: 'Game 7', avg_speed: 1050 },
-  { game: 'Game 8', avg_speed: 1078 },
-  { game: 'Game 9', avg_speed: 1107 },
-  { game: 'Game 10', avg_speed: 1078 },
-  { game: 'Game 11', avg_speed: 1092 },
-  { game: 'Game 12', avg_speed: 1090 },
-  { game: 'Game 13', avg_speed: 1100 },
-  { game: 'Game 14', avg_speed: 1123 },
-  { game: 'Game 15', avg_speed: 1162 },
-  { game: 'Game 16', avg_speed: 1155 },
-  { game: 'Game 17', avg_speed: 1169 },
-  { game: 'Game 18', avg_speed: 1163 },
-  { game: 'Game 19', avg_speed: 1152 },
-  { game: 'Game 20', avg_speed: 1181 },
-  { game: 'Game 21', avg_speed: 1222 },
-  { game: 'Game 22', avg_speed: 1181 },
-  { game: 'Game 23', avg_speed: 1213 },
-  { game: 'Game 24', avg_speed: 1243 },
-  { game: 'Game 25', avg_speed: 1239 },
-  { game: 'Game 26', avg_speed: 1257 },
-  { game: 'Game 27', avg_speed: 1231 },
-  { game: 'Game 28', avg_speed: 1299 },
-  { game: 'Game 29', avg_speed: 1270 },
-  { game: 'Game 30', avg_speed: 1292 },
-  { game: 'Game 31', avg_speed: 1281 },
-  { game: 'Game 32', avg_speed: 1337 },
-  { game: 'Game 33', avg_speed: 1311 },
-  { game: 'Game 34', avg_speed: 1343 },
-  { game: 'Game 35', avg_speed: 1334 },
-  { game: 'Game 36', avg_speed: 1368 },
-  { game: 'Game 37', avg_speed: 1356 },
-  { game: 'Game 38', avg_speed: 1398 },
-  { game: 'Game 39', avg_speed: 1391 },
-  { game: 'Game 40', avg_speed: 1387 },
-  { game: 'Game 41', avg_speed: 1429 },
-  { game: 'Game 42', avg_speed: 1395 },
-  { game: 'Game 43', avg_speed: 1404 },
-  { game: 'Game 44', avg_speed: 1446 },
-  { game: 'Game 45', avg_speed: 1460 },
-  { game: 'Game 46', avg_speed: 1463 },
-  { game: 'Game 47', avg_speed: 1484 },
-  { game: 'Game 48', avg_speed: 1491 },
-  { game: 'Game 49', avg_speed: 1506 },
-  { game: 'Game 50', avg_speed: 1462 },
-]
+export const chartData = Array.from({ length: 12 }, (_, i) => ({
+  game: `Game ${i + 1}`,
+  avg_speed: Math.floor(1000 + i * 6 + Math.random() * 100),
+}))
+
+const filterStages = [5, 10, 25, 50, 100] // You can adjust this list as needed
 
 const chartConfig = {
   avg_speed: {
     label: 'Average Speed',
-    color: 'hsl(var(--chart-1))',
+    color: 'hsl(var(--chart-5))',
   },
 } satisfies ChartConfig
 
 export function LineGraph() {
+  const gamesPlayed = chartData.length // Number of games played
+
+  const [selectedGames, setSelectedGames] = useState(gamesPlayed)
+  const filteredData = chartData.slice(-selectedGames)
+
+  const availableFilters = filterStages.filter((stage) => gamesPlayed >= stage)
+  const nextUnlockStage = filterStages.find((stage) => gamesPlayed < stage)
+
+  const initialSpeed = filteredData[0].avg_speed
+  const finalSpeed = filteredData[selectedGames - 1].avg_speed
+  const speedDifference = finalSpeed - initialSpeed
+
+  const avgSpeed =
+    filteredData.reduce((acc, curr) => acc + curr.avg_speed, 0) / selectedGames
+
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Line Chart</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        <div className='flex items-center justify-between'>
+          <div>
+            <CardTitle>Average Speed</CardTitle>
+            {/* <CardDescription>Last {selectedGames} Games</CardDescription> */}
+          </div>
+          <div>
+            <Select onValueChange={(value) => setSelectedGames(Number(value))}>
+              <SelectTrigger className='w-[300px]'>
+                <SelectValue placeholder='All Games' />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value={gamesPlayed.toString()}>
+                  All Games
+                </SelectItem>
+                {availableFilters.map((filter) => (
+                  <SelectItem key={filter} value={filter.toString()}>
+                    Last {filter} Games
+                  </SelectItem>
+                ))}
+
+                {/* {nextUnlockStage && (
+                  <SelectItem disabled value='disabled'>
+                    Play {nextUnlockStage - gamesPlayed} more game
+                    {nextUnlockStage - gamesPlayed === 1 ? '' : 'es'} to
+                    unlock deeper insights!
+                  </SelectItem>
+                )} */}
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig}>
+        <ChartContainer
+          config={chartConfig}
+          className='aspect-auto h-[310px] w-full'
+        >
           <LineChart
             accessibilityLayer
-            data={chartData}
+            data={filteredData}
             margin={{
               left: 12,
               right: 12,
@@ -104,6 +114,7 @@ export function LineGraph() {
           >
             <CartesianGrid vertical={false} />
             <XAxis dataKey='game' />
+            <YAxis dataKey='avg_speed' />
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
@@ -113,19 +124,16 @@ export function LineGraph() {
               type='natural'
               stroke='var(--color-avg_speed)'
               strokeWidth={2}
-              dot={false}
+              dot={{
+                fill: 'var(--color-avg_speed)',
+              }}
+              activeDot={{
+                r: 6,
+              }}
             />
           </LineChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className='flex-col items-start gap-2 text-sm'>
-        <div className='flex gap-2 font-medium leading-none'>
-          Trending up by 5.2% this month <TrendingUp className='h-4 w-4' />
-        </div>
-        <div className='leading-none text-muted-foreground'>
-          Showing total visitors for the last 6 months
-        </div>
-      </CardFooter>
     </Card>
   )
 }
