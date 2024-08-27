@@ -12,7 +12,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import ThemeSwitch from '@/components/theme-switch'
 import { TopNav } from '@/components/top-nav'
 import { UserNav } from '@/components/user-nav'
-import { RecentSales } from './components/recent-sales'
+
 import { BarGraph } from '@/components/charts/bar-graph'
 import { PieGraph } from '@/components/charts/pie-graph'
 import { AreaGraph } from '@/components/charts/area-graph'

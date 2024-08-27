@@ -44,7 +44,7 @@ const filterStages = [5, 10, 25, 50, 100] // You can adjust this list as needed
 const chartConfig = {
   avg_speed: {
     label: 'Average Speed',
-    color: 'hsl(var(--chart-5))',
+    color: 'hsl(var(--chart-1))',
   },
 } satisfies ChartConfig
 
