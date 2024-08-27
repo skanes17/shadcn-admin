@@ -17,8 +17,10 @@ import { BarGraph } from '@/components/charts/bar-graph'
 import { PieGraph } from '@/components/charts/pie-graph'
 import { AreaGraph } from '@/components/charts/area-graph'
 
-import ChatComponent from './components/chatbox'
+import ChatComponent from '../../components/custom/chatbox'
 import { LineGraph } from '@/components/charts/line-graph'
+import { playerMetrics } from '@/data/playerMetrics'
+import { RadialGraphComponent } from '@/components/charts/radial-graph-text'
 
 export default function Dashboard() {
   return (
@@ -183,6 +185,9 @@ export default function Dashboard() {
               <div className='col-span-1 lg:col-span-4'>
                 <LineGraph />
               </div>
+              <div className='col-span-1 lg:col-span-3'>
+                <RadialGraphComponent />
+              </div>
             </div>
           </TabsContent>
         </Tabs>
@@ -194,22 +199,22 @@ export default function Dashboard() {
 const topNav = [
   {
     title: 'Overview',
-    href: 'dashboard/overview',
+    href: 'overview/overview',
     isActive: true,
   },
   {
     title: 'Customers',
-    href: 'dashboard/customers',
+    href: 'overview/customers',
     isActive: false,
   },
   {
     title: 'Products',
-    href: 'dashboard/products',
+    href: 'overview/products',
     isActive: false,
   },
   {
     title: 'Settings',
-    href: 'dashboard/settings',
+    href: 'overview/settings',
     isActive: false,
   },
 ]

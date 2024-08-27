@@ -22,6 +22,15 @@ import {
   IconUsers,
   IconLock,
 } from '@tabler/icons-react'
+import {
+  ChevronsRight,
+  Crosshair,
+  MapPin,
+  RefreshCcw,
+  Rocket,
+  ShieldCheck,
+  User,
+} from 'lucide-react'
 
 export interface NavLink {
   title: string
@@ -34,143 +43,93 @@ export interface SideLink extends NavLink {
   sub?: NavLink[]
 }
 
+const size = 22
+
 export const sidelinks: SideLink[] = [
   {
-    title: 'Dashboard',
-    label: '',
+    title: 'Overview',
+    label: '', // ! Use label key to add a little notification symbol (could mean nested pages etc)
     href: '/',
-    icon: <IconLayoutDashboard size={24} />,
+    icon: <User size={size} />,
   },
   {
-    title: 'Tasks',
-    label: '3',
-    href: '/tasks',
-    icon: <IconChecklist size={24} />,
+    title: 'Shots',
+    label: '',
+    href: '/shots',
+    icon: <Crosshair size={size} />,
   },
   {
-    title: 'Chats',
-    label: '9',
+    title: 'Aerials',
+    label: '',
     href: '/chats',
-    icon: <IconMessages size={24} />,
+    icon: <Rocket size={size} />,
   },
   {
-    title: 'Apps',
+    title: 'Defense',
     label: '',
-    href: '/apps',
-    icon: <IconApps size={24} />,
+    href: '/defense',
+    icon: <ShieldCheck size={size} />,
   },
   {
-    title: 'Authentication',
+    title: 'Movement',
     label: '',
-    href: '',
-    icon: <IconUserShield size={24} />,
-    sub: [
-      {
-        title: 'Sign In (email + password)',
-        label: '',
-        href: '/sign-in',
-        icon: <IconHexagonNumber1 size={24} />,
-      },
-      {
-        title: 'Sign In (Box)',
-        label: '',
-        href: '/sign-in-2',
-        icon: <IconHexagonNumber2 size={24} />,
-      },
-      {
-        title: 'Sign Up',
-        label: '',
-        href: '/sign-up',
-        icon: <IconHexagonNumber3 size={24} />,
-      },
-      {
-        title: 'Forgot Password',
-        label: '',
-        href: '/forgot-password',
-        icon: <IconHexagonNumber4 size={24} />,
-      },
-      {
-        title: 'OTP',
-        label: '',
-        href: '/otp',
-        icon: <IconHexagonNumber5 size={24} />,
-      },
-    ],
+    href: '/movement',
+    icon: <ChevronsRight size={size} />,
   },
   {
-    title: 'Users',
+    title: 'Positioning',
     label: '',
-    href: '/users',
-    icon: <IconUsers size={24} />,
+    href: '/positioning',
+    icon: <MapPin size={size} />,
   },
-  {
-    title: 'Requests',
-    label: '10',
-    href: '/requests',
-    icon: <IconRouteAltLeft size={24} />,
-    sub: [
-      {
-        title: 'Trucks',
-        label: '9',
-        href: '/trucks',
-        icon: <IconTruck size={24} />,
-      },
-      {
-        title: 'Cargos',
-        label: '',
-        href: '/cargos',
-        icon: <IconBoxSeam size={24} />,
-      },
-    ],
-  },
-  {
-    title: 'Analysis',
-    label: '',
-    href: '/analysis',
-    icon: <IconChartHistogram size={24} />,
-  },
-  {
-    title: 'Extra Components',
-    label: '',
-    href: '/extra-components',
-    icon: <IconComponents size={24} />,
-  },
-  {
-    title: 'Error Pages',
-    label: '',
-    href: '',
-    icon: <IconExclamationCircle size={24} />,
-    sub: [
-      {
-        title: 'Not Found',
-        label: '',
-        href: '/404',
-        icon: <IconError404 size={24} />,
-      },
-      {
-        title: 'Internal Server Error',
-        label: '',
-        href: '/500',
-        icon: <IconServerOff size={24} />,
-      },
-      {
-        title: 'Maintenance Error',
-        label: '',
-        href: '/503',
-        icon: <IconBarrierBlock size={24} />,
-      },
-      {
-        title: 'Unauthorised Error',
-        label: '',
-        href: '/401',
-        icon: <IconLock size={24} />,
-      },
-    ],
-  },
-  {
-    title: 'Settings',
-    label: '',
-    href: '/settings',
-    icon: <IconSettings size={24} />,
-  },
+  // {
+  //   title: 'Rotations',
+  //   label: '',
+  //   href: '/rotations',
+  //   icon: <RefreshCcw size={size} />,
+  // },
+  // {
+  //   title: 'Extra Components',
+  //   label: '',
+  //   href: '/extra-components',
+  //   icon: <IconComponents size={size} />,
+  // },
+  // {
+  //   title: 'Error Pages',
+  //   label: '',
+  //   href: '',
+  //   icon: <IconExclamationCircle size={size} />,
+  //   sub: [
+  //     {
+  //       title: 'Not Found',
+  //       label: '',
+  //       href: '/404',
+  //       icon: <IconError404 size={size} />,
+  //     },
+  //     {
+  //       title: 'Internal Server Error',
+  //       label: '',
+  //       href: '/500',
+  //       icon: <IconServerOff size={size} />,
+  //     },
+  //     {
+  //       title: 'Maintenance Error',
+  //       label: '',
+  //       href: '/503',
+  //       icon: <IconBarrierBlock size={size} />,
+  //     },
+  //     {
+  //       title: 'Unauthorised Error',
+  //       label: '',
+  //       href: '/401',
+  //       icon: <IconLock size={size} />,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'Settings',
+  //   label: '',
+  //   href: '/settings',
+  //   icon: <IconSettings size={size} />,
+  // },
 ]
