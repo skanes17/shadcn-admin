@@ -22,7 +22,7 @@ import { LineGraph } from '@/components/charts/line-graph'
 import { playerMetrics } from '@/data/playerMetrics'
 import { RadialGraphComponent } from '@/components/charts/radial-graph-text'
 
-export default function Overview() {
+export default function Stats() {
   return (
     <Layout>
       {/* ===== Top Heading ===== */}

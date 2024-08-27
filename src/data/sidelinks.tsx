@@ -1,32 +1,8 @@
 import {
-  IconApps,
-  IconBarrierBlock,
-  IconBoxSeam,
-  IconChartHistogram,
-  IconChecklist,
-  IconComponents,
-  IconError404,
-  IconExclamationCircle,
-  IconHexagonNumber1,
-  IconHexagonNumber2,
-  IconHexagonNumber3,
-  IconHexagonNumber4,
-  IconHexagonNumber5,
-  IconLayoutDashboard,
-  IconMessages,
-  IconRouteAltLeft,
-  IconServerOff,
-  IconSettings,
-  IconTruck,
-  IconUserShield,
-  IconUsers,
-  IconLock,
-} from '@tabler/icons-react'
-import {
   ChevronsRight,
   Crosshair,
+  LayoutDashboard,
   MapPin,
-  RefreshCcw,
   Rocket,
   ShieldCheck,
   User,
@@ -53,6 +29,12 @@ export const sidelinks: SideLink[] = [
     icon: <User size={size} />,
   },
   {
+    title: 'Stats',
+    label: '', // ! Use label key to add a little notification symbol (could mean nested pages etc)
+    href: '/stats',
+    icon: <LayoutDashboard size={size} />,
+  },
+  {
     title: 'Shots',
     label: '',
     href: '/shots',
@@ -61,7 +43,7 @@ export const sidelinks: SideLink[] = [
   {
     title: 'Aerials',
     label: '',
-    href: '/chats',
+    href: '/aerials',
     icon: <Rocket size={size} />,
   },
   {
