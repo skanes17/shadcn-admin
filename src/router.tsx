@@ -71,9 +71,9 @@ const router = createBrowserRouter([
         }),
       },
       {
-        path: 'apps',
+        path: 'movement',
         lazy: async () => ({
-          Component: (await import('@/pages/apps')).default,
+          Component: (await import('@/pages/movement')).default,
         }),
       },
       {
@@ -122,8 +122,7 @@ const router = createBrowserRouter([
           {
             path: 'notifications',
             lazy: async () => ({
-              Component: (await import('./pages/settings/notifications'))
-                .default,
+              Component: (await import('./pages/settings/notifications')).default,
             }),
           },
           {
@@ -135,8 +134,7 @@ const router = createBrowserRouter([
           {
             path: 'error-example',
             lazy: async () => ({
-              Component: (await import('./pages/settings/error-example'))
-                .default,
+              Component: (await import('./pages/settings/error-example')).default,
             }),
             errorElement: <GeneralError className='h-[50svh]' minimal />,
           },

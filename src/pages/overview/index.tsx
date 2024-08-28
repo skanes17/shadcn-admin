@@ -1,7 +1,5 @@
 import { Layout } from '@/components/custom/layout'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import ThemeSwitch from '@/components/theme-switch'
-import { UserNav } from '@/components/user-nav'
 
 import { PieGraph } from '@/components/charts/pie-graph'
 import { AreaGraph } from '@/components/charts/area-graph'
@@ -9,9 +7,10 @@ import { AreaGraph } from '@/components/charts/area-graph'
 import ChatComponent from '../../components/custom/chatbox'
 import { LineGraph } from '@/components/charts/line-graph'
 import { RadialGraphComponent } from '@/components/charts/radial-graph-text'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { useGamesFilterStore } from './gamesFilterState'
-import { GameSelector } from '@/components/useGameStore'
+import useGameStore from '@/store/useGameStore'
+import { LayoutHeaderWithTabs } from '@/components/custom/layout-header-with-tabs'
+import { BarGraphMultipleComponent } from '@/components/charts/bar-graph-multiple'
+import { RadialChartMultiple } from '@/components/charts/radial-chart-label'
 
 export const chartData = Array.from({ length: 12 }, (_, i) => ({
   game: `Game ${i + 1}`,
@@ -21,7 +20,7 @@ const filterStages = [1, 5, 10, 25, 50, 100] // You can adjust this list as need
 
 export default function Overview() {
   const gamesPlayed = chartData.length // Number of games played
-  const { selectedGames, setSelectedGames } = useGamesFilterStore() // ! use zustand to carry context
+  const { selectedGames } = useGameStore()
 
   // const [selectedTab, setSelectedTab] = useState('last_game')
 
@@ -33,38 +32,7 @@ export default function Overview() {
   return (
     <Layout>
       {/* ===== Top Heading ===== */}
-      <Layout.Header>
-        <header>
-          <GameSelector />
-        </header>
-        {/* <TopNav links={topNav} /> */}
-        <div className='ml-auto flex items-center justify-end space-x-4'>
-          <Select onValueChange={(value) => setSelectedGames(Number(value))}>
-            <SelectTrigger className='w-[300px]'>
-              <SelectValue placeholder='Select replays to analyze' />
-            </SelectTrigger>
-            <SelectContent>
-              {availableFilters.map((filter) => (
-                <SelectItem key={filter} value={filter.toString()}>
-                  {filter === 1 ? 'Last Game' : `Last ${filter} Games`}
-                </SelectItem>
-              ))}
-              <SelectItem value={gamesPlayed.toString()}>All Games</SelectItem>
-
-              {/* {nextUnlockStage && (
-                  <SelectItem disabled value='disabled'>
-                    Play {nextUnlockStage - gamesPlayed} more game
-                    {nextUnlockStage - gamesPlayed === 1 ? '' : 'es'} to
-                    unlock deeper insights!
-                  </SelectItem>
-                )} */}
-            </SelectContent>
-          </Select>
-          {/* <Search /> */}
-          <ThemeSwitch />
-          <UserNav />
-        </div>
-      </Layout.Header>
+      <LayoutHeaderWithTabs sticky />
 
       {/* ===== Main ===== */}
       <Layout.Body>
@@ -76,13 +44,24 @@ export default function Overview() {
           </Card>
           <Card className='mb-2 flex flex-col justify-start p-2'>
             <CardHeader className='text-3xl font-semibold'>Biggest Win</CardHeader>
-            <CardContent className='new-amsterdam-regular text-5xl text-green-600'>Aerials 18%</CardContent>
-            <CardFooter className='text-blue-300'>Rank Average: 13%</CardFooter>
+
+            <CardContent className='new-amsterdam-regular space-y-4 text-5xl '>
+              <div className='text-green-600'>Aerials</div>
+              <BarGraphMultipleComponent />
+            </CardContent>
+
+            {/* <CardFooter className='flex-col items-start gap-2 text-sm'>
+              <div className='leading-none text-muted-foreground'>Rank average: 13%</div>
+            </CardFooter> */}
           </Card>
           <Card className='mb-2 flex flex-col justify-start p-2'>
             <CardHeader className='text-3xl font-semibold'>Area of Improvement</CardHeader>
-            <CardContent className='new-amsterdam-regular text-5xl text-green-600'>Positioning 10%</CardContent>
-            <CardFooter className='text-blue-300'>Rank Average: 21%</CardFooter>
+            <CardContent className='new-amsterdam-regular space-y-4 text-5xl '>
+              <div className='text-green-600'>Positioning</div>
+              <RadialChartMultiple />
+            </CardContent>
+
+            {/* <CardFooter className='text-blue-300'>Rank Average: 21%</CardFooter> */}
           </Card>
         </div>
         <div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-7'>

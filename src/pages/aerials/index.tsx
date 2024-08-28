@@ -5,19 +5,14 @@ import { TopNav } from '@/components/top-nav'
 import { UserNav } from '@/components/user-nav'
 
 import { AreaGraph } from '@/components/charts/area-graph'
+import { MainLayout } from '@/components/custom/main-layout'
+import { LayoutHeaderWithTabs } from '@/components/custom/layout-header-with-tabs'
 
 export default function Positioning() {
   return (
-    <Layout>
+    <MainLayout>
       {/* ===== Top Heading ===== */}
-      <Layout.Header>
-        <TopNav links={topNav} />
-        <div className='ml-auto flex items-center justify-end space-x-4'>
-          <Search />
-          <ThemeSwitch />
-          <UserNav />
-        </div>
-      </Layout.Header>
+      <LayoutHeaderWithTabs sticky />
 
       {/* ===== Main ===== */}
       <Layout.Body>
@@ -29,7 +24,7 @@ export default function Positioning() {
         {/* </TabsContent>
         </Tabs> */}
       </Layout.Body>
-    </Layout>
+    </MainLayout>
   )
 }
 

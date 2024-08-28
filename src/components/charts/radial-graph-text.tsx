@@ -1,22 +1,9 @@
 'use client'
 
 import { TrendingUp } from 'lucide-react'
-import {
-  Label,
-  PolarGrid,
-  PolarRadiusAxis,
-  RadialBar,
-  RadialBarChart,
-} from 'recharts'
+import { Label, PolarGrid, PolarRadiusAxis, RadialBar, RadialBarChart } from 'recharts'
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { ChartConfig, ChartContainer } from '@/components/ui/chart'
 
 const chartData = [{ label: 'near_teammate', value: 70.43 }]
@@ -42,24 +29,9 @@ export function RadialGraphComponent() {
         {/* <CardDescription>January - June 2024</CardDescription> */}
       </CardHeader>
       <CardContent className='flex-1 pb-0'>
-        <ChartContainer
-          config={chartConfig}
-          className='mx-auto aspect-square max-h-[250px]'
-        >
-          <RadialBarChart
-            data={chartData}
-            startAngle={0}
-            endAngle={end_angle}
-            innerRadius={80}
-            outerRadius={110}
-          >
-            <PolarGrid
-              gridType='circle'
-              radialLines={false}
-              stroke='none'
-              className='first:fill-muted last:fill-background'
-              polarRadius={[86, 74]}
-            />
+        <ChartContainer config={chartConfig} className='mx-auto aspect-square max-h-[250px]'>
+          <RadialBarChart data={chartData} startAngle={0} endAngle={end_angle} innerRadius={80} outerRadius={110}>
+            <PolarGrid gridType='circle' radialLines={false} stroke='none' className='first:fill-muted last:fill-background' polarRadius={[86, 74]} />
             <RadialBar
               dataKey='value'
               background
@@ -71,24 +43,11 @@ export function RadialGraphComponent() {
                 content={({ viewBox }) => {
                   if (viewBox && 'cx' in viewBox && 'cy' in viewBox) {
                     return (
-                      <text
-                        x={viewBox.cx}
-                        y={viewBox.cy}
-                        textAnchor='middle'
-                        dominantBaseline='middle'
-                      >
-                        <tspan
-                          x={viewBox.cx}
-                          y={viewBox.cy}
-                          className='fill-foreground text-4xl font-bold'
-                        >
+                      <text x={viewBox.cx} y={viewBox.cy} textAnchor='middle' dominantBaseline='middle'>
+                        <tspan x={viewBox.cx} y={viewBox.cy} className='fill-foreground text-4xl font-bold'>
                           {Math.round(chartData[0].value).toLocaleString()}%
                         </tspan>
-                        <tspan
-                          x={viewBox.cx}
-                          y={(viewBox.cy || 0) + 24}
-                          className='fill-muted-foreground'
-                        >
+                        <tspan x={viewBox.cx} y={(viewBox.cy || 0) + 24} className='fill-muted-foreground'>
                           time near teammate
                         </tspan>
                       </text>

@@ -18,6 +18,8 @@ const GlobalTabs = () => {
       last_10: 10,
       last_25: 25,
       last_50: 50,
+      last_100: 100,
+      all_games: 1000,
     }
     setSelectedGames(gamesMap[value])
   }
@@ -39,7 +41,7 @@ const GlobalTabs = () => {
             'font-lg inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow'
           )}
         >
-          Last 5 Games
+          Last 5
         </TabsTrigger>
         <TabsTrigger
           value='last_10'
@@ -47,7 +49,7 @@ const GlobalTabs = () => {
             'font-lg inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow'
           )}
         >
-          Last 10 Games
+          Last 10
         </TabsTrigger>
         <TabsTrigger
           value='last_25'
@@ -55,7 +57,7 @@ const GlobalTabs = () => {
             'font-lg inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow'
           )}
         >
-          Last 25 Games
+          Last 25
         </TabsTrigger>
         <TabsTrigger
           value='last_50'
@@ -63,7 +65,23 @@ const GlobalTabs = () => {
             'font-lg inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow'
           )}
         >
-          Last 50 Games
+          Last 50
+        </TabsTrigger>
+        <TabsTrigger
+          value='last_100'
+          className={cn(
+            'font-lg inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow'
+          )}
+        >
+          Last 100
+        </TabsTrigger>
+        <TabsTrigger
+          value='all_games'
+          className={cn(
+            'font-lg inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow'
+          )}
+        >
+          All Games
         </TabsTrigger>
       </TabsList>
     </Tabs>

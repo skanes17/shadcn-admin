@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { cn } from '@/lib/utils'
-import GlobalTabs from '../global-tabs'
 
 const LayoutContext = React.createContext<{
   offset: number

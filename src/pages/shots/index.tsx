@@ -5,19 +5,13 @@ import { TopNav } from '@/components/top-nav'
 import { UserNav } from '@/components/user-nav'
 
 import { BarGraph } from '@/components/charts/bar-graph'
+import { LayoutHeaderWithTabs } from '@/components/custom/layout-header-with-tabs'
 
 export default function Positioning() {
   return (
     <Layout>
       {/* ===== Top Heading ===== */}
-      <Layout.Header>
-        <TopNav links={topNav} />
-        <div className='ml-auto flex items-center justify-end space-x-4'>
-          <Search />
-          <ThemeSwitch />
-          <UserNav />
-        </div>
-      </Layout.Header>
+      <LayoutHeaderWithTabs sticky />
 
       {/* ===== Main ===== */}
       <Layout.Body>
