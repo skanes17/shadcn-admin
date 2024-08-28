@@ -1,12 +1,6 @@
 import { Layout } from '@/components/custom/layout'
 import { Button } from '@/components/custom/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Search } from '@/components/search'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import ThemeSwitch from '@/components/theme-switch'
@@ -43,11 +37,7 @@ export default function Stats() {
             <Button>Download</Button>
           </div>
         </div>
-        <Tabs
-          orientation='vertical'
-          defaultValue='last_game'
-          className='space-y-4'
-        >
+        <Tabs orientation='vertical' defaultValue='last_game' className='space-y-4'>
           <div className='w-full overflow-x-auto pb-2'>
             <TabsList>
               <TabsTrigger value='last_game'>Last Game</TabsTrigger>
@@ -62,9 +52,7 @@ export default function Stats() {
             <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-4'>
               <Card>
                 <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-                  <CardTitle className='text-sm font-medium'>
-                    Total Revenue
-                  </CardTitle>
+                  <CardTitle className='text-sm font-medium'>Total Revenue</CardTitle>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     viewBox='0 0 24 24'
@@ -80,16 +68,12 @@ export default function Stats() {
                 </CardHeader>
                 <CardContent>
                   <div className='text-2xl font-bold'>$45,231.89</div>
-                  <p className='text-xs text-muted-foreground'>
-                    +20.1% from last month
-                  </p>
+                  <p className='text-xs text-muted-foreground'>+20.1% from last month</p>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-                  <CardTitle className='text-sm font-medium'>
-                    Subscriptions
-                  </CardTitle>
+                  <CardTitle className='text-sm font-medium'>Subscriptions</CardTitle>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     viewBox='0 0 24 24'
@@ -107,9 +91,7 @@ export default function Stats() {
                 </CardHeader>
                 <CardContent>
                   <div className='text-2xl font-bold'>+2350</div>
-                  <p className='text-xs text-muted-foreground'>
-                    +180.1% from last month
-                  </p>
+                  <p className='text-xs text-muted-foreground'>+180.1% from last month</p>
                 </CardContent>
               </Card>
               <Card>
@@ -131,16 +113,12 @@ export default function Stats() {
                 </CardHeader>
                 <CardContent>
                   <div className='text-2xl font-bold'>+12,234</div>
-                  <p className='text-xs text-muted-foreground'>
-                    +19% from last month
-                  </p>
+                  <p className='text-xs text-muted-foreground'>+19% from last month</p>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-                  <CardTitle className='text-sm font-medium'>
-                    Active Now
-                  </CardTitle>
+                  <CardTitle className='text-sm font-medium'>Active Now</CardTitle>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     viewBox='0 0 24 24'
@@ -156,9 +134,7 @@ export default function Stats() {
                 </CardHeader>
                 <CardContent>
                   <div className='text-2xl font-bold'>+573</div>
-                  <p className='text-xs text-muted-foreground'>
-                    +201 since last hour
-                  </p>
+                  <p className='text-xs text-muted-foreground'>+201 since last hour</p>
                 </CardContent>
               </Card>
             </div>
@@ -169,9 +145,7 @@ export default function Stats() {
               <Card className='col-span-1 lg:col-span-3'>
                 <CardHeader>
                   <CardTitle>Chat with Mansell</CardTitle>
-                  <CardDescription>
-                    Ask questions to understand your playstyle.
-                  </CardDescription>
+                  <CardDescription>Ask questions to understand your playstyle.</CardDescription>
                 </CardHeader>
                 <CardContent>
                   {/* <RecentSales /> */}
